@@ -1,5 +1,5 @@
 <?php
-    loadView('partials/navbar');
+    loadPartial('navbar');
 ?>
 
 <section class="flex justify-center items-center mt-20">

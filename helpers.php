@@ -1,6 +1,18 @@
 <?php
-    function basePath(string $path): string {
-        return BASE_PATH . '/' . $path;
+    // function basePath(string $path): string {
+    //     return BASE_PATH . '/' . $path;
+    // }
+
+    /**
+     * Get the base path
+     *  
+     * @param string $path
+     * @return string
+     * 
+     */
+
+    function basePath($path = '') {
+        return __DIR__ . '/' . $path;
     }
 
     /**
@@ -11,7 +23,7 @@
      * 
      */
     function loadView($name) {
-        require basePath('views/{$name}.view.php'); }
+        require basePath("views/{$name}.view.php"); }
 
     // function loadPartial($name) {
     //     require basePath('views/partial/{$name}.php'); }
@@ -24,7 +36,7 @@
      */
 
     function loadPartial($name) {
-        $path = basePath('views/partials/{$name}.php');
+        $path = basePath("views/partials/{$name}.php");
         if(file_exists($path)) {
             require $path;
         } else {

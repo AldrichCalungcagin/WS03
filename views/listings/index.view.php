@@ -9,6 +9,8 @@
     loadPartial('navbar');
     loadPartial('showcase');
     loadPartial('topbanner');
+    loadPartial('bottombanner');
+    loadPartial('footer');
 ?>
 
     <!-- Nav -->
