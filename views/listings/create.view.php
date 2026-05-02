@@ -1,4 +1,5 @@
 <?php
+    loadPartial('head');
     loadPartial('navbar');
 ?>
 
@@ -117,3 +118,8 @@
         </form>
       </div>
     </section>
+
+<?php
+    loadPartial('bottombanner');
+    loadPartial('footer');
+?>

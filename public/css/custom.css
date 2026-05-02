@@ -27,14 +27,14 @@
    ---------------------------------------------------------------- */
 
 :root {
-  --color-header:       #0288d1;   /* Header at navigation bar */
-  --color-accent:       #ffc107;   /* "Post a Job" button at mga highlight */
+  --color-header:       #0000cc;   /* Header at navigation bar */
+  --color-accent:       #F59E0B;   /* "Post a Job" button at mga highlight */
   --color-page-bg:      #FFFFFF;   /* Background ng buong page */
-  --color-card-bg:      #03a9f4;   /* Background ng mga card/box */
+  --color-card-bg:      #4d4dff;   /* Background ng mga card/box */
   --color-heading:      #FFFFFF;   /* Kulay ng mga title at heading */
   --color-body-text:    #000000;   /* Regular na body text */
   --color-link:         #FFFFFF;   /* Mga clickable na links */
-  --color-tag-bg:       #ffc107;   /* Background ng mga tag/badge */
+  --color-tag-bg:       #F59E0B;   /* Background ng mga tag/badge */
   --color-tag-text:     #000000;   /* Text ng mga tag/badge */
   --color-footer:       #000000;   /* Footer background */
   --showcase-overlay:   rgba(0, 0, 0, 0.5); /* Hero banner overlay
@@ -178,7 +178,7 @@ footer,
 /* ----------------------------------------------------------------
    ADVANCED ZONE — Para sa gustong mag-explore pa!
    ----------------------------------------------------------------
-   Alisin ang /* at */ para i-activate ang isang rule.
+   Alisin ang 'at' para i-activate ang isang rule.
    ---------------------------------------------------------------- */
 
 /* Hover effect sa mga link */
