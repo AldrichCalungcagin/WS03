@@ -1,23 +1,19 @@
 <?php 
-    // require '../helpers.php';
+    ini_set('display_errors', 1);
 
-    // require basePath('Router.php');
+    error_reporting(E_ALL);
 
-    // $router = new Router();
-
-    // $routes = require basePath('routes.php');
-
-    // $uri = $_SERVER['REQUEST_URI'];
-
-    // $method = $_SERVER['REQUEST_METHOD'];
-
-    // $router->route($uri, $method);
+    require __DIR__ . '/../vendor/autoload.php';
 
     require '../helpers.php';
 
-    require basePath('Router.php');
+    use Framework\Router;
 
-    require basePath('Database.php');
+    // require '../helpers.php';
+
+    // require basePath('Framework/Router.php');
+
+    // require basePath('Framework/Database.php');
 
     // $config = require basePath('config/db.php');
 
@@ -27,7 +23,7 @@
 
     $routes = require basePath('routes.php');
 
-    $uri = $_SERVER['REQUEST_URI'];
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
     $method = $_SERVER['REQUEST_METHOD'];
 

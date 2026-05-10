@@ -1,0 +1,16 @@
+{
+    "name": "aldrichcalungcagin/ws03",
+    "description": "Job Seeking Application",
+    "authors": [
+        {
+            "name": "Aldrich Calungcagin",
+            "email": "aldrichcalungcagin@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}

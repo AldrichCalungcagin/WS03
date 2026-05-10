@@ -1,4 +1,7 @@
 <?php
+    namespace Framework;
+    use PDO;
+
     class Database {
         public $conn;
         public function __construct($config) {
@@ -6,7 +9,7 @@
 
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
             ];
 
             try {
@@ -17,9 +20,14 @@
             }
         }
 
-        public function query($query) {
+        public function query($query, $params = []) {
             try {
                 $sth = $this->conn->prepare($query);
+
+                //Binds names params
+                foreach ($params as $param => $value) {
+                    $sth->bindValue(':' . $param, $value);
+                }
                 $sth->execute();
                 return $sth;
             } catch (PDOException $e) {
