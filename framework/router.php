@@ -81,16 +81,47 @@ class Router {
      * return void
      */
 
-    public function route($uri, $method) {
-        foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === $method) {
-                $controller = 'App\\Controllers\\' . $route['controller'];
-                $controllerMethod = $route['controllerMethod'];
+    public function route($uri) {
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-                $controllerInstance = new $controller();
-                $controllerInstance->$controllerMethod();
-                return;
+        foreach ($this->routes as $route) {
+            //Split the current URI into segments
+            $uriSegments = explode('/', trim($uri, '/'));
+
+            // Split the route
+            $routeSegments = explode('/', trim($route['uri'], '/'));
+
+            $match = true;
+
+            if(count($uriSegments) === count($routeSegments) && strtoupper($route['method'] === $requestMethod)) {
+                $params = [];
+
+                $match = true;
+
+                for($i = 0; $i < count($uriSegments); $i++) {
+                    // If the uri do not match and there is no value between the {id}
+                    if($routeSegments[$i] !== $uriSegments[$i] && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
+                        $match = false;
+                        break;
+                    }
+                    //Check for param and add to $params array
+                    if(preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
+                        $params[$matches[1]] = $uriSegments[$i];
+                    }
+                }
+                if ($match) {
+                    $controller = 'App\\Controllers\\' . $route['controller'];
+                    $controllerMethod = $route['controllerMethod'];
+
+                    $controllerInstance = new $controller();
+                    $controllerInstance->$controllerMethod();
+                    return;
+                }
             }
+
+
+            // if ($route['uri'] === $uri && $route['method'] === $method) {
+            
         }
         
         ErrorController::notFound();
