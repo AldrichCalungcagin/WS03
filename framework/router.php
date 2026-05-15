@@ -118,10 +118,6 @@ class Router {
                     return;
                 }
             }
-
-
-            // if ($route['uri'] === $uri && $route['method'] === $method) {
-            
         }
         
         ErrorController::notFound();

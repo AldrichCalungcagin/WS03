@@ -1,8 +1,4 @@
 <?php
-    // function basePath(string $path): string {
-    //     return BASE_PATH . '/' . $path;
-    // }
-
     /**
      * Get the base path
      *  
@@ -22,6 +18,7 @@
      * @return void
      * 
      */
+    
     function loadView($name, $data = []) {
         $viewPath = basePath("App/views/{$name}.view.php");
         if(file_exists($viewPath)) {
@@ -31,9 +28,6 @@
             echo "View '{$name}' not found!";
         }
     }
-
-    // function loadPartial($name) {
-    //     require basePath('views/partial/{$name}.php'); }
 
     /**
      * load a partial
@@ -59,5 +53,21 @@
 
     function formatSalary($salary) {
         return '$' . number_format(floatval($salary));
+    }
+
+    function inspectAndDie($value) {
+        echo '<pre>';
+        die(var_dump($value));
+        echo '</pre>';
+    }
+
+    /**
+     * Sanitize Data
+     * 
+     * @param string $dirty
+     * return string
+     */
+    function sanitize($dirty) {
+        return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
     }
 ?>
