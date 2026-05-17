@@ -174,18 +174,18 @@
 
             $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits'];
 
-            $updatedValues = [];
+            $updateValues = [];
 
-            $updatedValues = array_intersect_key($_POST, array_flip($allowedFields));
+            $updateValues = array_intersect_key($_POST, array_flip($allowedFields));
 
-            $updatedValues = array_map('sanitize', $updatedValues);
+            $updateValues = array_map('sanitize', $updateValues);
 
             $requiredFields = ['title', 'description', 'salary', 'email', 'city', 'state'];
 
             $errors = [];
 
             foreach($requiredFields as $field) {
-                if(empty($updatedValues[$field]) || !Validation::string($updatedValues[$field])) {
+                if(empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
                     $errors[$field] = ucfirst($field) . ' is required';
                 }
             }
@@ -198,10 +198,23 @@
                 exit;
             } else {
                 //Submit to DB
-                inspectAndDie('Success');
-            }
+                $updateFields = [];
 
-            inspectAndDie($errors);
+                foreach(array_keys($updateValues) as $field) {
+                    $updateFields[] = "{$field} = :{$field}";
+                }
+                $updateFields = implode(', ', $updateFields);
+                
+                $updateQuery = "UPDATE listings SET $updateFields WHERE id = :id";
+
+                $updateValues['id'] = $id;
+
+                $this->db->query($updateQuery, $updateValues);
+
+                $_SESSION['success_message'] = 'Listing Updated';
+
+                redirect('/listings/' . $id);
+            }
         }
     }
 ?>
