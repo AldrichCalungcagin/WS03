@@ -125,13 +125,13 @@
             />
           </div>
           <button
-            class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none"
+            class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded border border-gray-300 focus:outline-none"
           >
             Save
           </button>
           <a
             href="/listings/<?= $listing->id ?>"
-            class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none"
+            class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded border border-gray-300 focus:outline-none"
           >
             Cancel
           </a>

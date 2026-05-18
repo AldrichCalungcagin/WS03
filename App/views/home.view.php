@@ -16,11 +16,13 @@
               <h2 class="text-xl font-semibold text-center"><?= $listing->title ?></h2>
               
               <ul class="mt-4 mb-1 bg-gray-100 p-4 rounded">
-                <p class="text-gray-700 text-lg mt-2">
+                <p class="text-gray-700 text-lg mt-2 mb-4">
                   <?= $listing->description ?>
                 </p>
+
+                <hr class="job-card-divider">
               
-                  <li class="mb-2"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
+                  <li class="mb-2 mt-4"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
                   <li class="mb-2">
                     <strong>Location:</strong> <?= $listing->city ?>, <?= $listing->state ?>
                   </li>

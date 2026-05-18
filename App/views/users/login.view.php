@@ -33,7 +33,7 @@
             Login
           </button>
 
-          <p class="mt-4 text-gray-500">
+          <p class="mt-4 text-white">
             Don't have an account?
             <a class="text-blue-900" href="/auth/register">Register</a>
           </p>

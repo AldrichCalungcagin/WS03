@@ -197,6 +197,12 @@ footer,
   color: #000000 !important;
 }
 
+.job-card-divider {
+  border: none;
+  border-top: 2px solid #d1d5db;
+  margin: 15px 12px;
+}
+
 
 /* ----------------------------------------------------------------
    ADVANCED ZONE — Para sa gustong mag-explore pa!

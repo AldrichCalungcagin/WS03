@@ -69,7 +69,7 @@
             Register
           </button>
 
-          <p class="mt-4 text-gray-500">
+          <p class="mt-4 text-white">
             Already have an account?
             <a class="text-blue-900" href="/auth/login">Login</a>
           </p>

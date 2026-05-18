@@ -16,11 +16,11 @@
         Back To Listings
       </a>
         <div class="flex space-x-4 ml-4">
-          <a href="/listings/edit/<?= $listing->id ?>" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Edit</a>
+          <a href="/listings/edit/<?= $listing->id ?>" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded border border-gray-300">Edit</a>
           <!-- Delete Form -->
           <form method="POST">
             <input type="hidden" name="_method" value="DELETE">
-            <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">Delete</button>
+            <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded border border-gray-300">Delete</button>
           </form>
           <!-- End Delete Form -->
         </div>
