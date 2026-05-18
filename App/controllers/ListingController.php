@@ -3,6 +3,8 @@
 
     use Framework\Database;
     use Framework\Validation;
+    use Framework\Session;
+    use Framework\Authorization;
 
     class ListingController{
         protected $db;
@@ -14,7 +16,7 @@
         }
 
         public function index(){
-            $listings = $this->db->query("SELECT * FROM listings")->fetchAll();
+            $listings = $this->db->query("SELECT * FROM listings ORDER BY created_at DESC")->fetchAll();
 
             loadView('listings/index', [
                 'listings' => $listings
@@ -55,7 +57,7 @@
 
             $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
 
-            $newListingData['user_id'] = 1;
+            $newListingData['user_id'] = Session::get('user')['id'];
 
             $newListingData = array_map('sanitize', $newListingData);
 
@@ -101,6 +103,8 @@
 
                 $this->db->query($query, $newListingData);
 
+                Session::setFlashMessage('success_message', 'Listing created successfully');
+
                 redirect('/listings');
             }
         }
@@ -120,14 +124,22 @@
 
             $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
 
+            // Check if listing exists
             if(!$listing) {
                 ErrorController::notFound('Listing not found');
                 return;
             }
+
+            // Authorization
+            if(!Authorization::isOwner($listing->user_id)) {
+                Session::setFlashMessage('error_message', 'You are not authorized to delete this listing');
+                return redirect('/listings/' . $listing->id);
+            }
+
             $this->db->query('DELETE FROM listings WHERE id = :id', $params);
 
             //Set flash message
-            $_SESSION['success_message'] = 'Listing deleted successfully';
+            Session::setFlashMessage('success_message', 'Listing deleted successfully');
 
             redirect('/listings');
         }
@@ -145,7 +157,6 @@
                 ErrorController::notFound('Listing not found');
                 return;
             }
-
 
             loadView('listings/edit', [
                 'listing' => $listing
@@ -211,7 +222,7 @@
 
                 $this->db->query($updateQuery, $updateValues);
 
-                $_SESSION['success_message'] = 'Listing Updated';
+                Session::setFlashMessage('success_message', 'Listing updated successfully');
 
                 redirect('/listings/' . $id);
             }

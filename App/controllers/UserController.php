@@ -100,10 +100,10 @@
             $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
 
             //Get new user ID
-            $userId = $this->db->conn->lastInsertId();
+            $userid = $this->db->conn->lastInsertId();
 
             Session::set('user', [
-                'id' => $userId,
+                'id' => $userid,
                 'name' => $name,
                 'email' => $email,
                 'city' => $city,
@@ -179,7 +179,7 @@
 
             // Set user session
             Session::set('user', [
-                'id' => $user->Id,
+                'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
                 'city' => $user->city,
