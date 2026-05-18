@@ -27,16 +27,16 @@
    ---------------------------------------------------------------- */
 
 :root {
-  --color-header:       #0000cc;   /* Header at navigation bar */
-  --color-accent:       #F59E0B;   /* "Post a Job" button at mga highlight */
+  --color-header:       #00A16F;   /* Header at navigation bar */
+  --color-accent:       #7D5122;   /* "Post a Job" button at mga highlight */
   --color-page-bg:      #FFFFFF;   /* Background ng buong page */
-  --color-card-bg:      #4d4dff;   /* Background ng mga card/box */
+  --color-card-bg:      #00A16F;   /* Background ng mga card/box */
   --color-heading:      #FFFFFF;   /* Kulay ng mga title at heading */
   --color-body-text:    #000000;   /* Regular na body text */
   --color-link:         #FFFFFF;   /* Mga clickable na links */
-  --color-tag-bg:       #F59E0B;   /* Background ng mga tag/badge */
-  --color-tag-text:     #000000;   /* Text ng mga tag/badge */
-  --color-footer:       #000000;   /* Footer background */
+  --color-tag-bg:       #7D5122;   /* Background ng mga tag/badge */
+  --color-tag-text:     #FFFFFF;   /* Text ng mga tag/badge */
+  --color-footer:       #13522B;   /* Footer background */
   --showcase-overlay:   rgba(0, 0, 0, 0.5); /* Hero banner overlay
                                                0.0 = transparent
                                                0.9 = halos itim */
@@ -143,6 +143,11 @@ header {
   background-color: var(--color-tag-bg) !important;
 }
 
+.hover\:bg-indigo-200:hover {
+  background-color: var(--color-tag-bg) !important;
+  filter: brightness(0.88);
+}
+
 .text-indigo-700,
 .text-indigo-800 {
   color: var(--color-tag-text) !important;
@@ -172,6 +177,24 @@ footer,
 
 .bg-gray-100 {
   background-color: var(--color-page-bg) !important;
+}
+
+.job-card {
+  transition: transform 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+
+  border: 3px solid transparent;
+}
+
+.job-card:hover {
+  transform: scale(1.03);
+  border-color: #000000;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.show-all-jobs {
+  color: #000000 !important;
 }
 
 

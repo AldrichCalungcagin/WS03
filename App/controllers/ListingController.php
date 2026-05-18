@@ -264,8 +264,5 @@
                 'location' => $location
             ]);
         }
-
-        
-
     }
 ?>

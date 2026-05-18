@@ -1,8 +1,6 @@
 <?php    
     loadPartial('head');
     loadPartial('navbar');
-
-    // 37:46
 ?>
 
     <!-- Registration Form Box -->

@@ -1,7 +1,6 @@
 <?php
     loadPartial('head');
     loadPartial('navbar');
-    loadPartial('topbanner');
 ?>
     <section class="container mx-auto p-4 mt-4">
       <div class="rounded-lg shadow-md bg-white p-3">
@@ -9,12 +8,13 @@
       <?= loadPartial('message') ?>
 
        <div class="flex justify-between items-center">
-      <a class="block p-4 text-blue-700" href="/listings">
+      
+
+      <?php if(Framework\Authorization::isOwner($listing->user_id)) : ?>
+        <a class="block p-4 text-blue-700" href="/listings">
         <i class="fa fa-arrow-alt-circle-left"></i>
         Back To Listings
       </a>
-
-      <?php if(Framework\Authorization::isOwner($listing->user_id)) : ?>
         <div class="flex space-x-4 ml-4">
           <a href="/listings/edit/<?= $listing->id ?>" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Edit</a>
           <!-- Delete Form -->
@@ -29,17 +29,13 @@
     </div>
         <div class="p-4">
           <h2 class="text-xl font-semibold"><?= $listing->title ?></h2>
-          <p class="text-gray-700 text-lg mt-2">
-            <?= $listing->description ?>
-          </p>
-          <ul class="my-4 bg-gray-100 p-4">
+          <ul class="my-4 bg-gray-100 p-4 rounded">
+            <p class="text-gray-700 text-lg mt-2">
+              <?= $listing->description ?>
+            </p>
             <li class="mb-2"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
             <li class="mb-2">
               <strong>Location:</strong> <?= $listing->city ?>, <?= $listing->state ?>
-              <span
-                class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2"
-                >Local</span
-              >
             </li>
             <?php if(!empty($listing->tags)) : ?>
               <li class="mb-2">
@@ -47,22 +43,27 @@
               </li>
             <?php endif; ?>
           </ul>
+          <h3 class="text-lg font-semibold mb-2 text-blue-500">
+          Job Requirements
+        </h3>
+        <ul class="my-4 bg-gray-100 p-4 rounded">
+          <p>
+            <?= $listing->requirements ?>
+          </p>
+        </ul>
+        <h3 class="text-lg font-semibold mt-4 mb-2 text-blue-500">Benefits</h3>
+        <ul class="my-4 bg-gray-100 p-4 rounded">
+          <p>
+            <?= $listing->benefits ?>
+          </p>
+        </ul>
+        
         </div>
       </div>
     </section>
 
     <section class="container mx-auto p-4">
-      <h2 class="text-xl font-semibold mb-4">Job Details</h2>
-      <div class="rounded-lg shadow-md bg-white p-4">
-        <h3 class="text-lg font-semibold mb-2 text-blue-500">
-          Job Requirements
-        </h3>
-        <p>
-          <?= $listing->requirements ?>
-        </p>
-        <h3 class="text-lg font-semibold mt-4 mb-2 text-blue-500">Benefits</h3>
-        <?= $listing->benefits ?>
-      </div>
+      
       <p class="my-5">
         Put "Job Application" as the subject of your email and attach your
         resume.
@@ -73,21 +74,6 @@
       >
         Apply Now
       </a>
-    </section>
-
-    <!-- Bottom Banner -->
-      <section class="container mx-auto my-6">
-        <div class="bg-blue-800 text-white rounded p-4 flex items-center justify-between">
-          <div>
-            <h2 class="text-xl font-semibold">Looking to hire?</h2>
-            <p class="text-gray-200 text-lg mt-2">
-              Post your job listing now and find the perfect candidate.
-            </p>
-          </div>
-          <a href="post-job.html" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300">
-            <i class="fa fa-edit"></i> Post a Job
-          </a>
-        </div>
     </section>
 
 <?php

@@ -26,6 +26,5 @@
                 return redirect('/auth/login');
             }
         }
-        // 44:47
     }
 ?>
